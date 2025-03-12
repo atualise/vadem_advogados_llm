@@ -1,0 +1,40 @@
+{
+    "version": "2.0",
+    "routeKey": "POST /whatsapp/message/send",
+    "rawPath": "/whatsapp/message/send",
+    "rawQueryString": "",
+    "headers": {
+        "accept": "*/*",
+        "accept-encoding": "deflate, gzip",
+        "content-length": "421",
+        "content-type": "application/json",
+        "host": "webhook.vadem.org",
+        "user-agent": "facebookexternalua",
+        "x-amzn-trace-id": "Root=1-671e70e7-162584f350c88ea464c3ac37",
+        "x-forwarded-for": "69.171.231.3",
+        "x-forwarded-port": "443",
+        "x-forwarded-proto": "https",
+        "x-hub-signature": "sha1=c15152150d408672e9225701b4b82a26cd11f98d",
+        "x-hub-signature-256": "sha256=b931d9745f7e9f4f4a20a71231138ed3ef353048ebb917e24b1397c22fba73ee"
+    },
+    "requestContext": {
+        "accountId": "492205185884",
+        "apiId": "w8hri4yhg4",
+        "domainName": "webhook.vadem.org",
+        "domainPrefix": "webhook",
+        "http": {
+            "method": "POST",
+            "path": "/whatsapp/message/send",
+            "protocol": "HTTP/1.1",
+            "sourceIp": "69.171.231.3",
+            "userAgent": "facebookexternalua"
+        },
+        "requestId": "AUaUShAUIAMESZQ=",
+        "routeKey": "POST /whatsapp/message/send",
+        "stage": "$default",
+        "time": "27/Oct/2024:16:57:11 +0000",
+        "timeEpoch": 1730048231856
+    },
+    "body": "{\"text\":\"this is a text message\", \"to\":\"5511975716615\"}",
+    "isBase64Encoded": false
+}

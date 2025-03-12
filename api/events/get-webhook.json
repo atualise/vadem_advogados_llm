@@ -1,0 +1,41 @@
+{
+    "version": "2.0",
+    "routeKey": "GET /whatsapp/webhook",
+    "rawPath": "/whatsapp/webhook",
+    "rawQueryString": "hub.mode=subscribe&hub.challenge=1233485605&hub.verify_token=vadem",
+    "headers": {
+        "accept": "*/*",
+        "accept-encoding": "deflate, gzip",
+        "content-length": "0",
+        "host": "webhook.vadem.org",
+        "user-agent": "facebookplatform/1.0 (+http://developers.facebook.com)",
+        "x-amzn-trace-id": "Root=1-671e6b72-0972c04f128816aa63b4d0fc",
+        "x-forwarded-for": "69.171.231.113",
+        "x-forwarded-port": "443",
+        "x-forwarded-proto": "https"
+    },
+    "queryStringParameters": {
+        "hub.challenge": "1233485605",
+        "hub.mode": "subscribe",
+        "hub.verify_token": "vadem"
+    },
+    "requestContext": {
+        "accountId": "492205185884",
+        "apiId": "w8hri4yhg4",
+        "domainName": "webhook.vadem.org",
+        "domainPrefix": "webhook",
+        "http": {
+            "method": "GET",
+            "path": "/whatsapp/webhook",
+            "protocol": "HTTP/1.1",
+            "sourceIp": "69.171.231.113",
+            "userAgent": "facebookplatform/1.0 (+http://developers.facebook.com)"
+        },
+        "requestId": "AUW6BiYvoAMEcog=",
+        "routeKey": "GET /whatsapp/webhook",
+        "stage": "$default",
+        "time": "27/Oct/2024:16:33:54 +0000",
+        "timeEpoch": 1730046834929
+    },
+    "isBase64Encoded": false
+}

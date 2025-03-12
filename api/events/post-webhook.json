@@ -1,0 +1,40 @@
+{
+    "version": "2.0",
+    "routeKey": "POST /whatsapp/webhook",
+    "rawPath": "/whatsapp/webhook",
+    "rawQueryString": "",
+    "headers": {
+        "accept": "*/*",
+        "accept-encoding": "deflate, gzip",
+        "content-length": "515",
+        "content-type": "application/json",
+        "host": "webhook.vadem.org",
+        "user-agent": "facebookexternalua",
+        "x-amzn-trace-id": "Root=1-6720eaab-2440e6f279f2cb8d243831c2",
+        "x-forwarded-for": "69.171.251.27",
+        "x-forwarded-port": "443",
+        "x-forwarded-proto": "https",
+        "x-hub-signature": "sha1=a9507dcd50964668fb23833d55a44ca230098782",
+        "x-hub-signature-256": "sha256=a39e7ca146fd635252b9e1e12db6cd766ea210296f8c58ae40b626949a765ce3"
+    },
+    "requestContext": {
+        "accountId": "492205185884",
+        "apiId": "w8hri4yhg4",
+        "domainName": "webhook.vadem.org",
+        "domainPrefix": "webhook",
+        "http": {
+            "method": "POST",
+            "path": "/whatsapp/webhook",
+            "protocol": "HTTP/1.1",
+            "sourceIp": "69.171.251.27",
+            "userAgent": "facebookexternalua"
+        },
+        "requestId": "Aama0imGIAMEcaQ=",
+        "routeKey": "POST /whatsapp/webhook",
+        "stage": "$default",
+        "time": "29/Oct/2024:14:01:15 +0000",
+        "timeEpoch": 1730210475263
+    },
+    "body": "{\"object\":\"whatsapp_business_account\",\"entry\":[{\"id\":\"449305298271967\",\"changes\":[{\"value\":{\"messaging_product\":\"whatsapp\",\"metadata\":{\"display_phone_number\":\"5511989822151\",\"phone_number_id\":\"441867515682175\"},\"contacts\":[{\"profile\":{\"name\":\"Vagner Amaral\"},\"wa_id\":\"5511975716615\"}],\"messages\":[{\"from\":\"5511975716615\",\"id\":\"wamid.HBgNNTUxMTk3NTcxNjYxNRUCABIYFDNBMzMxRDE2MTM0QjFDRDcwN0JGAA==\",\"timestamp\":\"1730210474\",\"text\":{\"body\":\"Oi me fala mais sobre o servi\\u00e7o\"},\"type\":\"text\"}]},\"field\":\"messages\"}]}]}",
+    "isBase64Encoded": false
+}

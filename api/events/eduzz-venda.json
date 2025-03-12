@@ -1,0 +1,36 @@
+{
+    "version": "2.0",
+    "routeKey": "POST /eduzz/nova-venda",
+    "rawPath": "/eduzz/nova-venda",
+    "rawQueryString": "",
+    "headers": {
+        "content-length": "754",
+        "content-type": "application/x-www-form-urlencoded",
+        "host": "webhook.vadem.org",
+        "user-agent": "GuzzleHttp/6.5.5 curl/7.64.0 PHP/7.3.16",
+        "x-amzn-trace-id": "Root=1-671030f8-43710c0e1e1175676eb03690",
+        "x-forwarded-for": "52.207.179.62",
+        "x-forwarded-port": "443",
+        "x-forwarded-proto": "https"
+    },
+    "requestContext": {
+        "accountId": "492205185884",
+        "apiId": "w8hri4yhg4",
+        "domainName": "webhook.vadem.org",
+        "domainPrefix": "webhook",
+        "http": {
+            "method": "POST",
+            "path": "/eduzz/nova-venda",
+            "protocol": "HTTP/1.1",
+            "sourceIp": "52.207.179.62",
+            "userAgent": "GuzzleHttp/6.5.5 curl/7.64.0 PHP/7.3.16"
+        },
+        "requestId": "fwyW4hkeIAMEYhA=",
+        "routeKey": "POST /eduzz/nova-venda",
+        "stage": "$default",
+        "time": "16/Oct/2024:21:32:40 +0000",
+        "timeEpoch": 1729114360544
+    },
+    "body": "ZWR6X2ZhdF9jb2Q9MTIzJmVkel9mYXRfc3RhdHVzPTMmZWR6X2ZhdF9kdGNhZGFzdHJvPTIwMjEtMDEtMDErMDAlM0EwMCUzQTAwJmVkel9vcmRlcl9idW1wX2l0ZW09MCZlZHpfZ3RyX2Rpc3Q9OTgmZWR6X2NudF9jb2Q9MTAmZWR6X2NudF9wYWljb2Q9MjAmZWR6X2NudF90aXR1bG89UHJvZHVjdCtOYW1lJmVkel9jbGlfY29kPTUwJmVkel9jbGlfY2VsPTE1OTk4MzQ3NzYyJmVkel9jbGlfY2lkYWRlPVNvcm9jYWJhJmVkel9jbGlfdWY9U1AmZWR6X2NsaV90YXhudW1iZXI9MjczNzQ4NzY1MjMmZWR6X2NsaV9yc29jaWFsPUN1c3RvbWVyK05hbWUmZWR6X2NsaV9lbWFpbD1jdXN0b21lci1lbWFpbCU0MGdtYWlsLmNvbSZlZHpfdmFsb3JwYWdvPTEwJmVkel90cmtfMT10cmFja2VyMSZlZHpfZ3RyX3BhcmFtMT11dG1fc291cmNlJmVkel9ndHJfcGFyYW0yPXV0bV9jYW1wYWlnbiZlZHpfZ3RyX3BhcmFtMz11dG1fbWVkaXVtJmVkel9ndHJfcGFyYW00PXV0bV9jb250ZW50JmVkel9wcm9kdXRvcl9lbWFpbD1wcm9kdWNlci1lbWFpbCU0MGVkdXp6LmNvbSZlZHpfcHJvZHV0b3JfY29kPTMyJmVkel9jb25fY29kPTEwJmVkel9jb25fc3RhdHVzPUVtK2RpYSZlZHpfY29uX3N0YXR1c19jb2Q9MSZlZHpfY29uX2R0ZW5kPTIwMjQtMDItMDRUMTElM0EwOSUzQTQ3LjAwMFomZWR6X2Nvbl9pc19pbmZpbml0ZT0wJmVkel9jbGlfYXBpa2V5PWFwaWtleSZlZHpfY2xpX29yaWdpbl9zZWNyZXQ9b3JpZ2luX3NlY3JldCZ0eXBlPWNyZWF0ZQ==",
+    "isBase64Encoded": true
+}

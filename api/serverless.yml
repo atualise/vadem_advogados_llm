@@ -1,0 +1,131 @@
+org: atualise
+app: vadem
+service: vadem-webhook
+
+package: 
+  patterns:
+    - '!.vscode/**'
+    - '!vendors/**'
+    - '!events/**'
+    - '!.serverless/**'
+    - '!node_modules/**'
+    - '!data/**'
+    - '!examples/**'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: prod
+  tags:
+    ServiceName: vadem
+    StepName: webhook
+  stackTags:
+      ServiceName: vadem
+      StepName: webhook
+  deploymentBucket:
+    tags:
+      ServiceName: vadem
+      StepName: webhook
+  iam:
+    deploymentRole: arn:aws:iam::${env:AWS_ACCOUNT_ID, "492205185884"}:role/${env:AWS_IAM_ROLE, "serverless"}
+    role:
+      statements:        
+        - Effect: "Allow"
+          Action:
+            - "lambda:GetLayerVersion"
+          Resource: arn:aws:lambda:${env:AWS_REGION, "us-east-1"}:${env:AWS_ACCOUNT_ID, "492205185884"}:layer:${self:provider.stage}-${env:AWS_LAMBDA_DATABASE_LAYER, "im-database"}:${env:AWS_LAMBDA_DATABASE_LAYER_VERSION, "10"}
+        
+        - Effect: "Allow"
+          Action:
+            - "lambda:GetLayerVersion"
+          Resource: arn:aws:lambda:${env:AWS_REGION, "us-east-1"}:${env:AWS_ACCOUNT_ID, "492205185884"}:layer:${self:provider.stage}-${env:AWS_LAMBDA_CONNECTION_LAYER, "im-connection"}:${env:AWS_LAMBDA_CONNECTION_LAYER_VERSION, "12"}
+  environment:
+    DB_HOST: ${file(./config.${self:provider.stage}.yaml):DB_HOST}
+    DB_PORT: ${file(./config.${self:provider.stage}.yaml):DB_PORT}
+    DB_USER: ${file(./config.${self:provider.stage}.yaml):DB_USER}
+    DB_PASSWORD: ${file(./config.${self:provider.stage}.yaml):DB_PASSWORD}
+    DB_DATABASE: ${file(./config.${self:provider.stage}.yaml):DB_DATABASE}
+    WEBHOOK_VERIFY_TOKEN: ${file(./config.${self:provider.stage}.yaml):WEBHOOK_VERIFY_TOKEN, env:WEBHOOK_VERIFY_TOKEN}
+    GRAPH_API_TOKEN: ${file(./config.${self:provider.stage}.yaml):GRAPH_API_TOKEN, env:GRAPH_API_TOKEN}
+    BUSINESS_PHONE_NUMBER_ID: ${file(./config.${self:provider.stage}.yaml):BUSINESS_PHONE_NUMBER_ID, env:BUSINESS_PHONE_NUMBER_ID}
+
+functions:
+  vendas_eduzz:
+    handler: handler.vendas_eduzz
+    memorySize: 128
+    timeout: 20
+    tags:
+      StepName: webhook
+    events:
+      - httpApi:
+          method: post
+          path: /eduzz/nova-venda
+    
+    layers:
+      - arn:aws:lambda:${env:AWS_REGION, "us-east-1"}:${env:AWS_ACCOUNT_ID, "492205185884"}:layer:${self:provider.stage}-${env:AWS_LAMBDA_DATABASE_LAYER, "im-database"}:${env:AWS_LAMBDA_DATABASE_LAYER_VERSION, "10"}
+      - arn:aws:lambda:${env:AWS_REGION, "us-east-1"}:${env:AWS_ACCOUNT_ID, "492205185884"}:layer:${self:provider.stage}-${env:AWS_LAMBDA_CONNECTION_LAYER, "im-connection"}:${env:AWS_LAMBDA_CONNECTION_LAYER_VERSION, "12"}
+  
+  whatsapp_webhook_post:
+    handler: whatsapp.post_webhook
+    memorySize: 128
+    timeout: 20
+    tags:
+      StepName: webhook
+    events:
+      - httpApi:
+          method: post
+          path: /whatsapp/webhook
+    layers:
+      - arn:aws:lambda:${env:AWS_REGION, "us-east-1"}:${env:AWS_ACCOUNT_ID, "492205185884"}:layer:${self:provider.stage}-${env:AWS_LAMBDA_DATABASE_LAYER, "im-database"}:${env:AWS_LAMBDA_DATABASE_LAYER_VERSION, "10"}
+      - arn:aws:lambda:${env:AWS_REGION, "us-east-1"}:${env:AWS_ACCOUNT_ID, "492205185884"}:layer:${self:provider.stage}-${env:AWS_LAMBDA_CONNECTION_LAYER, "im-connection"}:${env:AWS_LAMBDA_CONNECTION_LAYER_VERSION, "12"}
+
+  whatsapp_send_message:
+    handler: whatsapp.send_message
+    memorySize: 128
+    timeout: 20
+    tags:
+      StepName: webhook
+    events:
+      - httpApi:
+          method: post
+          path: /whatsapp/message/send
+    layers:
+      - arn:aws:lambda:${env:AWS_REGION, "us-east-1"}:${env:AWS_ACCOUNT_ID, "492205185884"}:layer:${self:provider.stage}-${env:AWS_LAMBDA_DATABASE_LAYER, "im-database"}:${env:AWS_LAMBDA_DATABASE_LAYER_VERSION, "10"}
+      - arn:aws:lambda:${env:AWS_REGION, "us-east-1"}:${env:AWS_ACCOUNT_ID, "492205185884"}:layer:${self:provider.stage}-${env:AWS_LAMBDA_CONNECTION_LAYER, "im-connection"}:${env:AWS_LAMBDA_CONNECTION_LAYER_VERSION, "12"}
+
+  whatsapp_webhook_get:
+    handler: whatsapp.get_webhook
+    memorySize: 128
+    timeout: 20
+    tags:
+      StepName: webhook
+    events:
+      - httpApi:
+          method: get
+          path: /whatsapp/webhook
+    layers:
+      - arn:aws:lambda:${env:AWS_REGION, "us-east-1"}:${env:AWS_ACCOUNT_ID, "492205185884"}:layer:${self:provider.stage}-${env:AWS_LAMBDA_DATABASE_LAYER, "im-database"}:${env:AWS_LAMBDA_DATABASE_LAYER_VERSION, "10"}
+      - arn:aws:lambda:${env:AWS_REGION, "us-east-1"}:${env:AWS_ACCOUNT_ID, "492205185884"}:layer:${self:provider.stage}-${env:AWS_LAMBDA_CONNECTION_LAYER, "im-connection"}:${env:AWS_LAMBDA_CONNECTION_LAYER_VERSION, "12"}
+  
+
+plugins:
+  - serverless-lift
+  - serverless-offline
+  - serverless-domain-manager
+  - serverless-plugin-resource-tagging
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+    useDocker: false
+    ignoreJWTSignature: true
+  customDomain:    
+    certificateArn: arn:aws:acm:${env:AWS_REGION, "us-east-1"}:${env:AWS_ACCOUNT_ID, "492205185884"}:certificate/${env:AWS_ACM_CERTIFICATE, "c29f2e38-d144-4303-8faa-cbf9b86936f3"}
+    domainName: ${file(./config.${self:provider.stage}.yaml):DOMAIN_NAME}
+    basePath: 'v1'
+    stage: '$default'
+    createRoute53Record: true
+    createRoute53IPv6Record: true
+    endpointType: 'regional'
+    apiType: http
+  
